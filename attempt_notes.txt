@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NeonForge build status:
 - Express + static public pages created
 - Auth routes created with bcrypt+sessions
@@ -5,3 +6,12 @@ NeonForge build status:
 - GSAP/mobile nav/product UI already existed
 - Database layer uses sqlite3; on Windows where native binaries fail, server still starts and routes degrade gracefully.
 
+=======
+NeonForge build status:
+- Express + static public pages created
+- Auth routes created with bcrypt+sessions
+- Contact route created
+- GSAP/mobile nav/product UI already existed
+- Database layer uses sqlite3; on Windows where native binaries fail, server still starts and routes degrade gracefully.
+
+>>>>>>> 90160272d5dadd85078d532cdc48313dec82902c

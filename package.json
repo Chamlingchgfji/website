@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "neonforge",
   "version": "1.0.0",
@@ -19,3 +20,26 @@
     "sqlite3": "^5.1.7"
   }
 }
+=======
+{
+  "name": "neonforge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium gaming top-up marketplace with neon glass UI and secure auth.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "express-session": "^1.17.3",
+    "helmet": "^7.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
+>>>>>>> 90160272d5dadd85078d532cdc48313dec82902c
