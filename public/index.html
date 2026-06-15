@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Premium gaming marketplace with neon glass UI, smooth animations, and curated products." />
+  <meta name="theme-color" content="#0b0f1a" />
+
+  <title>NeonForge — Premium Gaming Marketplace</title>
+
+  <!-- Fonts (swap to installed equivalents if needed) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+</head>
+
+<body>
+
+
+  <!-- Custom cursor + trail -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-trail" aria-hidden="true"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" type="button" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Navbar -->
+  <header class="nav" role="banner">
+    <div class="nav__inner">
+      <a class="brand" href="#top" aria-label="NeonForge Home">
+        <span class="brand__mark" aria-hidden="true">
+          <i class="fa-solid fa-bolt"></i>
+        </span>
+        <span class="brand__name">Neon<span>Forge</span></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#features" class="nav__link">Features</a>
+        <a href="#products" class="nav__link">Marketplace</a>
+        <a href="#trending" class="nav__link">Trending</a>
+        <a href="#testimonials" class="nav__link">Reviews</a>
+        <a href="#newsletter" class="nav__link">Newsletter</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a class="btn btn--primary magnetic" href="/login" aria-label="Login">
+          <span class="btn__glow" aria-hidden="true"></span>
+          <span>Get Access</span>
+        </a>
+
+
+        <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <a href="#features" class="mobile-menu__link">Features</a>
+      <a href="#products" class="mobile-menu__link">Marketplace</a>
+      <a href="#trending" class="mobile-menu__link">Trending</a>
+      <a href="#testimonials" class="mobile-menu__link">Reviews</a>
+      <a href="#newsletter" class="mobile-menu__link">Newsletter</a>
+      <a class="btn btn--primary magnetic mobile-menu__cta" href="/login" aria-label="Login">
+        <span class="btn__glow" aria-hidden="true"></span>
+        <span>Get Access</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- Page transitions (simple): overlay fade handled by JS -->
+  <div class="page-fade" aria-hidden="true"></div>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero__bg" aria-hidden="true">
+        <canvas id="particles" class="particles"></canvas>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__badge reveal-up">
+          <span class="chip chip--neon"><i class="fa-solid fa-gem"></i> Premium Drops • Live Deals</span>
+        </div>
+
+        <h1 class="hero__title reveal-up" data-split>
+          Upgrade your grind with <span class="text-gradient">NeonForge</span>
+        </h1>
+
+        <p class="hero__subtitle reveal-up">
+          Curated gaming bundles, rare skins, and creator tools — all in a glass-neon marketplace built for speed.
+        </p>
+
+        <div class="hero__ctas reveal-up">
+          <button class="btn btn--primary magnetic" type="button" data-scrollto="#products">
+            <span class="btn__glow" aria-hidden="true"></span>
+            <span>Explore Marketplace</span>
+          </button>
+          <button class="btn btn--secondary magnetic" type="button" data-scrollto="#features">
+            <span class="btn__glow" aria-hidden="true"></span>
+            <span>See Features</span>
+          </button>
+        </div>
+
+        <div class="hero__stats" aria-label="Key statistics">
+          <div class="stat reveal-up" data-counter="128">
+            <div class="stat__value">0</div>
+            <div class="stat__label">Curated Drops</div>
+          </div>
+          <div class="stat reveal-up" data-counter="540">
+            <div class="stat__value">0</div>
+            <div class="stat__label">Creator Rewards</div>
+          </div>
+          <div class="stat reveal-up" data-counter="24">
+            <div class="stat__value">0</div>
+            <div class="stat__label">Countries Served</div>
+          </div>
+        </div>
+
+        <div class="scroll-indicator" aria-hidden="true">
+          <div class="scroll-indicator__mouse"></div>
+          <div class="scroll-indicator__text">Scroll</div>
+        </div>
+      </div>
+
+      <!-- Floating gaming elements -->
+      <div class="floating" aria-hidden="true">
+        <div class="float-card float-card--1 glass">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div>Anti-Fraud</div>
+        </div>
+        <div class="float-card float-card--2 glass">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <div>Instant Delivery</div>
+        </div>
+        <div class="float-card float-card--3 glass">
+          <i class="fa-solid fa-bolt"></i>
+          <div>Ultra Fast</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section" aria-label="Features">
+      <div class="section__head reveal-up">
+        <h2 class="section__title">Built for gamers. Designed for growth.</h2>
+        <p class="section__subtitle">Premium UX with smooth GSAP animations, accessibility, and a neon-glass visual language.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card glass reveal-up">
+          <div class="feature-card__icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="feature-card__title">Magnetic Interactions</h3>
+          <p class="feature-card__desc">Buttons feel alive with glow + magnetic hover effects.</p>
+        </article>
+
+        <article class="feature-card glass reveal-up" data-reveal-delay="80">
+          <div class="feature-card__icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3 class="feature-card__title">Glassmorphism UI</h3>
+          <p class="feature-card__desc">Rounded cards, subtle shadows, and depth on every section.</p>
+        </article>
+
+        <article class="feature-card glass reveal-up" data-reveal-delay="160">
+          <div class="feature-card__icon"><i class="fa-solid fa-shield"></i></div>
+          <h3 class="feature-card__title">Secure Marketplace</h3>
+          <p class="feature-card__desc">Trust-first UX patterns and clean checkout flows.</p>
+        </article>
+
+        <article class="feature-card glass reveal-up" data-reveal-delay="240">
+          <div class="feature-card__icon"><i class="fa-solid fa-wand-sparkles"></i></div>
+          <h3 class="feature-card__title">Staggered GSAP Animations</h3>
+          <p class="feature-card__desc">Scroll-triggered reveals, parallax, and smooth counters.</p>
+        </article>
+
+        <article class="feature-card glass reveal-up" data-reveal-delay="320">
+          <div class="feature-card__icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h3 class="feature-card__title">Mobile-First Responsive</h3>
+          <p class="feature-card__desc">Optimized layouts for phones, tablets, and desktops.</p>
+        </article>
+
+        <article class="feature-card glass reveal-up" data-reveal-delay="400">
+          <div class="feature-card__icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h3 class="feature-card__title">Fast Filters + Lazy Load</h3>
+          <p class="feature-card__desc">Category filtering with lazy-loaded media for speed.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Products / Services -->
+    <section id="products" class="section section--products" aria-label="Products">
+      <div class="section__head reveal-up">
+        <h2 class="section__title">Marketplace</h2>
+        <p class="section__subtitle">Filter by category and grab trending drops with a premium buy-now flow.</p>
+      </div>
+
+      <div class="filters glass reveal-up" role="region" aria-label="Category filters">
+        <button class="filter-btn is-active magnetic" type="button" data-category="all">All</button>
+        <button class="filter-btn magnetic" type="button" data-category="skins">Skins</button>
+        <button class="filter-btn magnetic" type="button" data-category="bundles">Bundles</button>
+        <button class="filter-btn magnetic" type="button" data-category="tools">Creator Tools</button>
+        <button class="filter-btn magnetic" type="button" data-category="accounts">Accounts</button>
+      </div>
+
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+
+      <div class="products-loader" aria-hidden="true">
+        <div class="spinner"></div>
+        <div>Loading products…</div>
+      </div>
+    </section>
+
+    <!-- Trending Carousel -->
+    <section id="trending" class="section" aria-label="Trending">
+      <div class="section__head reveal-up">
+        <h2 class="section__title">Trending right now</h2>
+        <p class="section__subtitle">A horizontal neon carousel with auto-scroll and interactive cards.</p>
+      </div>
+
+      <div class="carousel glass reveal-up" role="region" aria-label="Trending carousel">
+        <div class="carousel__top">
+          <div class="carousel__title">Featured Drops</div>
+          <label class="toggle" aria-label="Auto-scroll">
+            <input id="autoScroll" type="checkbox" checked />
+            <span class="toggle__ui" aria-hidden="true"></span>
+            <span class="toggle__text">Auto</span>
+          </label>
+        </div>
+
+        <div class="carousel__viewport">
+          <div class="carousel__track" id="carouselTrack"></div>
+        </div>
+
+        <div class="carousel__controls" aria-label="Carousel controls">
+          <button class="icon-btn magnetic" type="button" id="carouselPrev" aria-label="Previous">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="carousel__dots" id="carouselDots" aria-hidden="true"></div>
+          <button class="icon-btn magnetic" type="button" id="carouselNext" aria-label="Next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Parallax -->
+    <section class="section section--parallax" aria-label="Statistics">
+      <div class="parallax__bg" aria-hidden="true"></div>
+      <div class="stats-row container">
+        <div class="stat stat--big glass reveal-up" data-counter="3.2" data-counter-format="float">
+          <div class="stat__value">0</div>
+          <div class="stat__label">Avg. Delivery Time (min)</div>
+        </div>
+        <div class="stat stat--big glass reveal-up" data-counter="98" data-counter-suffix="%">
+          <div class="stat__value">0</div>
+          <div class="stat__label">Satisfaction Rate</div>
+        </div>
+        <div class="stat stat--big glass reveal-up" data-counter="1.6" data-counter-format="float" data-counter-suffix="M">
+          <div class="stat__value">0</div>
+          <div class="stat__label">Monthly Active Users</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section" aria-label="Testimonials">
+      <div class="section__head reveal-up">
+        <h2 class="section__title">What players say</h2>
+        <p class="section__subtitle">Modern review cards with a rotating slider and star ratings.</p>
+      </div>
+
+      <div class="testimonials glass reveal-up">
+        <div class="testimonials__viewport">
+          <div class="testimonials__track" id="testimonialsTrack"></div>
+        </div>
+
+        <div class="testimonials__controls">
+          <button class="icon-btn magnetic" type="button" id="testPrev" aria-label="Previous reviews">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="testimonials__progress" aria-hidden="true"><span id="testProgress"></span></div>
+          <button class="icon-btn magnetic" type="button" id="testNext" aria-label="Next reviews">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" aria-label="Footer">
+      <div id="newsletter" class="footer__top container reveal-up">
+        <div class="footer__brand">
+          <div class="brand__mark--footer" aria-hidden="true"><i class="fa-solid fa-bolt"></i></div>
+          <h3>NeonForge Newsletter</h3>
+          <p>Weekly drops, exclusive deals, and creator updates. No spam.</p>
+
+          <form class="newsletter" id="newsletterForm" novalidate>
+            <label class="sr-only" for="email">Email</label>
+            <input id="email" type="email" placeholder="you@domain.com" autocomplete="email" required />
+            <button class="btn btn--primary magnetic" type="submit">
+              <span class="btn__glow" aria-hidden="true"></span>
+              <span>Subscribe</span>
+            </button>
+          </form>
+          <div class="newsletter__note" id="newsletterNote" role="status" aria-live="polite"></div>
+        </div>
+
+        <div class="footer__cols" aria-label="Footer links">
+          <div class="footer-col">
+            <div class="footer-col__title">Quick Links</div>
+            <a href="#features">Features</a>
+            <a href="#products">Marketplace</a>
+            <a href="#trending">Trending</a>
+            <a href="#testimonials">Reviews</a>
+          </div>
+
+          <div class="footer-col">
+            <div class="footer-col__title">Company</div>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+            <a href="#">Security</a>
+          </div>
+
+          <div class="footer-col">
+            <div class="footer-col__title">Resources</div>
+            <a href="#">Help Center</a>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="#">Terms</a>
+          </div>
+
+          <div class="footer-col">
+            <div class="footer-col__title">Social</div>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+            <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i> Discord</a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom container reveal-up">
+        <div class="footer__copy">© <span id="year"></span> NeonForge. All rights reserved.</div>
+        <div class="footer__legal">
+          <a href="#">Privacy</a>
+          <span>•</span>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Auth modal removed (real auth via /login and /signup). -->
+
+  <!-- JS -->
+
+  <script src="../js/animations.js" defer></script>
+  <script src="../js/products.js" defer></script>
+  <script src="../js/slider.js" defer></script>
+  <script src="../js/main.js" defer></script>
+
+  <!-- Mobile bottom navigation -->
+  <nav class="mobile-bottom-nav" aria-label="Bottom navigation">
+    <div class="mobile-bottom-nav__inner">
+      <button class="mobile-bottom-nav__item is-active" type="button" data-scrollto="#features" aria-label="Features">
+        <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+        <span>Features</span>
+      </button>
+      <button class="mobile-bottom-nav__item" type="button" data-scrollto="#products" aria-label="Marketplace">
+        <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
+        <span>Market</span>
+      </button>
+      <button class="mobile-bottom-nav__item" type="button" data-scrollto="#trending" aria-label="Trending">
+        <i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>
+        <span>Trending</span>
+      </button>
+      <button class="mobile-bottom-nav__item" type="button" data-scrollto="#testimonials" aria-label="Reviews">
+        <i class="fa-solid fa-star" aria-hidden="true"></i>
+        <span>Reviews</span>
+      </button>
+      <button class="mobile-bottom-nav__item" type="button" data-scrollto="#newsletter" aria-label="Newsletter">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        <span>News</span>
+      </button>
+      <button class="mobile-bottom-nav__cta" type="button" data-open="auth" aria-label="Get Access">
+        <i class="fa-solid fa-gem" aria-hidden="true"></i>
+        <span>Get Access</span>
+      </button>
+    </div>
+  </nav>
+</body>
+</html>
+
+
+

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contact NeonForge — send a message about top-up marketplace, support, or partnerships." />
+  <meta name="theme-color" content="#0b0f1a" />
+  <title>Contact — NeonForge</title>
+  <meta name="robots" content="index,follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+
+  <style>
+    .page-pad{padding:96px 0 80px;}
+    .contact-grid{display:grid; grid-template-columns: 1fr; gap:16px;}
+    .contact-card{padding:18px; border-radius:28px;}
+    .contact-title{font-family:Poppins; font-size:28px; margin:0 0 8px;}
+    .contact-sub{margin:0; color:var(--muted); line-height:1.7;}
+    .form{margin-top:14px; display:flex; flex-direction:column; gap:12px;}
+    .field label{display:block; margin:0 0 6px; color:rgba(234,241,255,.88); font-weight:800; font-size:13px;}
+    .field input, .field textarea{width:100%; padding:12px 14px; border-radius:18px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color:var(--text); outline:none; font-family:inherit;}
+    .field textarea{min-height:130px; resize:vertical;}
+    .field input:focus-visible, .field textarea:focus-visible{outline:2px solid rgba(32,247,255,.65); outline-offset:2px;}
+    .form-note{margin-top:10px; color:var(--muted); min-height:18px;}
+
+    @media (min-width: 860px){
+      .contact-grid{grid-template-columns: 1fr 1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-trail" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="nav" role="banner">
+    <div class="nav__inner">
+      <a class="brand" href="/" aria-label="NeonForge Home">
+        <span class="brand__mark" aria-hidden="true"><i class="fa-solid fa-bolt"></i></span>
+        <span class="brand__name">Neon<span>Forge</span></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--secondary" href="/login" style="text-decoration:none;">Login</a>
+        <a class="btn btn--primary magnetic" href="/signup" style="text-decoration:none;">
+          <span class="btn__glow" aria-hidden="true"></span>
+          <span>Sign up</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-pad" id="top">
+    <div class="container">
+      <section class="contact-grid" aria-label="Contact section">
+        <div class="contact-card glass reveal-up">
+          <h1 class="contact-title">Let’s talk</h1>
+          <p class="contact-sub">Send us a message. We’ll store it securely on the server and show a confirmation instantly.</p>
+
+          <div style="margin-top:16px; display:grid; gap:12px;">
+            <div class="feature-card glass" style="margin:0;">
+              <div class="feature-card__icon"><i class="fa-solid fa-headset"></i></div>
+              <h3 class="feature-card__title">Support</h3>
+              <p class="feature-card__desc">Questions about top-ups, deliveries, or marketplace access.</p>
+            </div>
+            <div class="feature-card glass" style="margin:0;">
+              <div class="feature-card__icon"><i class="fa-solid fa-handshake"></i></div>
+              <h3 class="feature-card__title">Partnerships</h3>
+              <p class="feature-card__desc">Creators and studios: collaborate with our team.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card glass reveal-up">
+          <form class="form" id="contactForm" novalidate>
+            <div class="field">
+              <label for="contactName">Name</label>
+              <input id="contactName" name="name" type="text" autocomplete="name" required minlength="2" />
+            </div>
+
+            <div class="field">
+              <label for="contactEmail">Email</label>
+              <input id="contactEmail" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" required minlength="8" aria-describedby="contactHelp"></textarea>
+              <div id="contactHelp" class="sr-only">Write at least 8 characters.</div>
+            </div>
+
+            <button class="btn btn--primary magnetic" type="submit" aria-label="Send message">
+              <span class="btn__glow" aria-hidden="true"></span>
+              <span>Send message</span>
+            </button>
+
+            <div class="form-note" id="contactNote" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../js/contact.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
+

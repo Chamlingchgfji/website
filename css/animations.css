@@ -1,0 +1,15 @@
+/* Reveal state */
+.reveal-in{opacity:1; transform: translateY(0)}
+
+/* Product card buy shimmer */
+.buy-btn{position:relative; overflow:hidden}
+.buy-btn:before{content:""; position:absolute; inset:-60px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent); transform: translateX(-140%); transition: transform .6s ease}
+.product-card:hover .buy-btn:before{transform: translateX(140%)}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .reveal-up{transition:none !important; opacity:1 !important; transform:none !important}
+}
+
+
+

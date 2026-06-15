@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Create an account on NeonForge — premium gaming top-up marketplace. Secure password hashing + session login." />
+  <meta name="theme-color" content="#0b0f1a" />
+  <title>Sign Up — NeonForge</title>
+  <meta name="robots" content="index,follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+
+  <style>
+    .auth-shell{min-height:100svh; padding:96px 0 70px; display:grid; place-items:center; position:relative; overflow:hidden;}
+    .auth-card{width:min(520px, 92vw); padding:20px; border-radius:28px; position:relative;}
+    .auth-title{margin:8px 0 8px; font-family:Poppins; font-size:26px; line-height:1.1;}
+    .auth-sub{margin:0; color:var(--muted); line-height:1.7;}
+    .auth-form{margin-top:16px; display:flex; flex-direction:column; gap:12px;}
+    .field label{display:block; margin:0 0 6px; color:rgba(234,241,255,.88); font-weight:800; font-size:13px;}
+    .field input{width:100%; padding:12px 14px; border-radius:18px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color:var(--text); outline:none;}
+    .field input:focus-visible{outline:2px solid rgba(32,247,255,.65); outline-offset:2px;}
+    .auth-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:4px;}
+    .link-btn{border:none; background:transparent; color:var(--muted); cursor:pointer; font-weight:900; padding:8px 0; text-decoration:none;}
+    .link-btn:hover{color:var(--text);}
+    .form-note{margin-top:10px; color:var(--muted); min-height:18px;}
+    .page-fade{position:fixed; inset:0; background: rgba(6,9,19,.92); pointer-events:none; opacity:0; z-index:9998; transition: opacity .25s ease}
+    .page-fade.is-active{opacity:1}
+  </style>
+</head>
+
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-trail" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <div class="page-fade" aria-hidden="true"></div>
+
+  <!-- Navbar (minimal) -->
+  <header class="nav" role="banner">
+    <div class="nav__inner">
+      <a class="brand" href="/" aria-label="NeonForge Home">
+        <span class="brand__mark" aria-hidden="true"><i class="fa-solid fa-bolt"></i></span>
+        <span class="brand__name">Neon<span>Forge</span></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--secondary" href="/login" aria-label="Go to login" style="text-decoration:none;">
+          <span>Login</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-shell" id="top">
+    <section class="auth-card glass" aria-label="Signup form">
+      <div class="reveal-up" style="opacity:1; transform:none;">
+        <div class="auth-title">Create your account</div>
+        <p class="auth-sub">Sign up with email and a strong password. Your data is stored securely on the server.</p>
+      </div>
+
+      <form class="auth-form" id="signupForm" novalidate>
+        <div class="field">
+          <label for="signupEmail">Email</label>
+          <input id="signupEmail" type="email" autocomplete="email" required />
+        </div>
+
+        <div class="field">
+          <label for="signupPassword">Password</label>
+          <input id="signupPassword" type="password" autocomplete="new-password" required minlength="8" />
+        </div>
+
+        <div class="field">
+          <label for="signupConfirm">Confirm Password</label>
+          <input id="signupConfirm" type="password" autocomplete="new-password" required minlength="8" />
+        </div>
+
+        <div class="auth-actions">
+          <button class="btn btn--primary magnetic" type="submit" aria-label="Create account">
+            <span class="btn__glow" aria-hidden="true"></span>
+            <span>Create account</span>
+          </button>
+          <a class="link-btn" href="/login" aria-label="Go to login">Already have an account?</a>
+        </div>
+
+        <div class="form-note" id="signupNote" role="status" aria-live="polite"></div>
+      </form>
+
+      <div style="margin-top:14px; color:var(--muted); line-height:1.7; font-size:13px;">
+        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+        &nbsp;Passwords are hashed with bcrypt. Sessions are managed with secure cookies.
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/main.js" defer></script>
+
+  <script>
+    function smoothAnchorNavigation(){
+      const links = document.querySelectorAll('a[href^="/"], a[href^="#"]');
+      const fade = document.querySelector('.page-fade');
+      if(!fade) return;
+
+      const setFade = (active) => fade.classList.toggle('is-active', active);
+      links.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const href = a.getAttribute('href');
+          if(!href || href.startsWith('javascript:')) return;
+          if(href.startsWith('#')) return;
+          if(e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+          setFade(true);
+          setTimeout(() => setFade(false), 180);
+        });
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      smoothAnchorNavigation();
+    });
+  </script>
+</body>
+</html>
+
